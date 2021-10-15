@@ -4,12 +4,12 @@ part 'serach_model.g.dart';
 
 @JsonSerializable()
 class GetSearchResult {
-  int? id;
-  String? name;
-  int? search_count;
-  int? use_count;
-  String? created_at;
-  String? updated_at;
+  final int? id;
+  final String? name;
+  final int? search_count;
+  final int? use_count;
+  final String? created_at;
+  final String? updated_at;
 
   GetSearchResult({
     this.id,

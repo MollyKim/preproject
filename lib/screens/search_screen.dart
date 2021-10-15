@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:preproject/controllers/search_controller.dart';
-import 'package:preproject/models/general_response_model.dart';
 import 'package:preproject/utils/debounce.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
@@ -14,7 +13,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   TextEditingController textEditingController = TextEditingController();
-  ListResponseModelData? result;
   final SearchController searchController = Get.find();
 
   Debounce debounce = Debounce(Duration(milliseconds: 500));
@@ -39,11 +37,13 @@ class _HomeState extends State<Home> {
                       SizedBox(width: 15),
                       Expanded(
                           child: TextField(
+                            readOnly: searchController.isSelected,
                         controller: textEditingController,
                         onChanged: (text) {
-                          debounce.run(() {
-                            search(text);
-                          });
+                              if(!searchController.isSelected)
+                                debounce.run(() {
+                                  search(text);
+                                });
                         },
                       )),
                     ],
@@ -59,7 +59,13 @@ class _HomeState extends State<Home> {
   }
 
   detailScreen() {
-    return Text(textEditingController.text);
+    return Column(
+      children: [
+        // Expanded(
+        //   child: child),
+        // Expandedded(child: child),
+      ],
+    );
   }
 
   searchListScreen() {
@@ -69,10 +75,12 @@ class _HomeState extends State<Home> {
         itemCount: searchController.searchResults.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-            onTap: () {
+            onTap: () async{
               searchController.changeIsSelect(true);
               textEditingController.text =
                   searchController.searchResults[index].name!;
+              await searchController.searchDetail(word: searchController.searchResults[index].name!);
+
             },
             child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
