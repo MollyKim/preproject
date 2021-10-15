@@ -27,6 +27,9 @@ class SearchController extends BaseController{
     final DetailData resp = await super.rootService.searchService.searchDetail(word);
     posts.addAll(resp.data!.posts!);
     events.addAll(resp.data!.events!);
+    print(events.first.barnd?.name ?? "null");
+    print(events[2].barnd ?? "null");
+    print(';;;;;;;;');
     update();
   }
 

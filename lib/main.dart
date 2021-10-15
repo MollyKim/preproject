@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:preproject/controllers/search_controller.dart';
 import 'package:preproject/screens/search_screen.dart';
 import 'package:preproject/services/root_service.dart';
-import 'package:preproject/services/search/search_service.dart';
 
 void main() {
   runApp(Root());
@@ -50,7 +49,6 @@ class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'FlutterStudy',
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       getPages: renderPages(),
