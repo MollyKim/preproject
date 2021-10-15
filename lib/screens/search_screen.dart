@@ -121,6 +121,7 @@ class _HomeState extends State<Home> {
             children: List.generate(searchController.events.length, (index) {
               return Container(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Stack(
                       children: [
@@ -135,7 +136,7 @@ class _HomeState extends State<Home> {
                                 color: Colors.green,
                                   border: Border.all(color: Colors.green),
                                 borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0) //                 <--- border radius here
+                                    Radius.circular(5.0)
                                 ),
                               ),
                               child: Text(searchController.events[index].dcrate ?? "",style: TextStyle(color: Colors.white,fontSize: 15),),
@@ -143,7 +144,7 @@ class _HomeState extends State<Home> {
 
                       ],
                     ),
-                    Text(searchController.events[index].barnd?.name ?? "",style: TextStyle(fontSize: 7)),
+                    Text(searchController.events[index].brand?.name ?? "",style: TextStyle(fontSize: 10)),
                     Text(searchController.events[index].title ?? "", style: TextStyle(fontSize: 15),maxLines: 2,overflow: TextOverflow.ellipsis,),
                     Text("${searchController.events[index].listprice}원",
                       style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),

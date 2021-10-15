@@ -78,8 +78,8 @@ Event _$EventFromJson(Map<String, dynamic> json) {
     dcprice: json['dcprice'] as String?,
     listprice: json['listprice'] as String?,
     my_bookmark: json['my_bookmark'] as int?,
-    barnd:
-        json['barnd'] == null ? null : Brand.fromJson(json['barnd'] as Object),
+    brand:
+        json['brand'] == null ? null : Brand.fromJson(json['brand'] as Object),
   );
 }
 
@@ -99,12 +99,12 @@ Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
       'dcprice': instance.dcprice,
       'listprice': instance.listprice,
       'my_bookmark': instance.my_bookmark,
-      'barnd': instance.barnd,
+      'brand': instance.brand,
     };
 
 Brand _$BrandFromJson(Map<String, dynamic> json) {
   return Brand(
-    id: json['id'] as String?,
+    id: json['id'] as int?,
     name: json['name'] as String?,
     description: json['description'] as String?,
     option: json['option'] as String?,

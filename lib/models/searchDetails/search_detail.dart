@@ -76,7 +76,7 @@ class Event {
   final String? dcprice;
   final String? listprice;
   final int? my_bookmark;
-  final Brand? barnd;
+  final Brand? brand;
 
 
   factory Event.fromJson(Object? json) =>
@@ -98,7 +98,7 @@ class Event {
       this.dcprice,
       this.listprice,
       this.my_bookmark,
-      this.barnd});
+      this.brand});
 
   Map<String, dynamic> toJson() => _$EventToJson(this);
 
@@ -107,7 +107,7 @@ class Event {
 
 @JsonSerializable()
 class Brand {
-  final String? id;
+  final int? id;
   final String? name;
   final String? description;
   final String? option;
