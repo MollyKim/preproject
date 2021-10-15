@@ -67,16 +67,12 @@ class RootService {
       RequestInterceptorHandler handler,
       ) async {
     var logger = Logger();
-    if (options.headers.containsKey('content-type')) {
       // final ct = options.headers['content-type'];
-      final ct = options
-          .headers['multipart/form-data; boundary=<calculated when request is sent>'];
       print('request');
       logger.d("options.data : ${options.data}");
       logger.d("options.path : ${options.path}");
       logger.d("options.uri : ${options.uri}");
-      options.contentType = ct;
-    }
+
     return handler.next(options);
   }
 

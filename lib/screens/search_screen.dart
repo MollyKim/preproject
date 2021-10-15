@@ -162,6 +162,10 @@ class _HomeState extends State<Home> {
   }
 
   search(String text) async {
-    await searchController.search(name: text);
+    try {
+      await searchController.search(name: text);
+    } catch(e){
+      print('error : $e');
+    }
   }
 }
