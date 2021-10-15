@@ -62,8 +62,11 @@ class _HomeState extends State<Home> {
     return Column(
       children: [
         // Expanded(
-        //   child: child),
-        // Expandedded(child: child),
+        //   child: child
+        // ),
+        // Expanded(
+        //   child: child
+        // ),
       ],
     );
   }

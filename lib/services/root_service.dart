@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:preproject/services/search/search_service.dart';
+import 'package:logger/logger.dart';
 
 class RootService {
   static Dio dio = Dio()
@@ -41,12 +42,12 @@ class RootService {
       DioError error,
       ErrorInterceptorHandler handler,
       ) async {
+    var logger = Logger();
+
     print('error');
-    print(error.requestOptions.baseUrl);
-    print(error.requestOptions.path);
-    print(error.response!.statusCode);
-    print(error.response!.data.toString());
-    print(error.response?.headers.toString() ?? '');
+    logger.d(error.response!.statusCode);
+    logger.d(error.response!.data.toString());
+    logger.d(error.response?.headers.toString() ?? '');
     return handler.next(error);
   }
 
@@ -54,12 +55,10 @@ class RootService {
       Response resp,
       ResponseInterceptorHandler handler,
       ) async {
-    print('response');
-    print(resp.requestOptions.baseUrl);
-    print(resp.requestOptions.path);
-    print(resp.data);
-    print(resp.headers);
+    var logger = Logger();
 
+    print('response');
+    logger.d(resp.data);
     return handler.next(resp);
   }
 
@@ -67,16 +66,15 @@ class RootService {
       RequestOptions options,
       RequestInterceptorHandler handler,
       ) async {
+    var logger = Logger();
     if (options.headers.containsKey('content-type')) {
       // final ct = options.headers['content-type'];
       final ct = options
           .headers['multipart/form-data; boundary=<calculated when request is sent>'];
       print('request');
-      print("options.data : ${options.data}");
-      print("options.path : ${options.path}");
-      print("options.headers : ${options.headers}");
-      print("options.uri : ${options.uri}");
-      print(options.data);
+      logger.d("options.data : ${options.data}");
+      logger.d("options.path : ${options.path}");
+      logger.d("options.uri : ${options.uri}");
       options.contentType = ct;
     }
     return handler.next(options);
